@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Quiz.css';
 import Questions from '../Questions/Questions.jsx';
 
+/** redux store import */
+import { useSelector } from 'react-redux';
+
 const Quiz = () => {
+  const state = useSelector((state) => state);
+  useEffect(() => {
+    console.log(state);
+  });
+
   // next button event handler
   const onNextHandler = () => {
     console.log('onclick next ');

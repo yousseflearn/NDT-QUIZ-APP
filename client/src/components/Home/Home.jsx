@@ -17,7 +17,12 @@ const Home = () => {
         <li>The result will be declared at the end of the quiz.</li>
       </ol>
       <form id="form">
-        <input className="userId" type="text" placeholder="Username*" />
+        <input
+          ref={inputRef}
+          className="userId"
+          type="text"
+          placeholder="Username*"
+        />
       </form>
       <div className="start">
         <Link className="btn" to={'/quiz'}>

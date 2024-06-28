@@ -5,12 +5,12 @@ import data from '../../database/data';
 const Questions = () => {
   const [checked, setChecked] = useState(undefined);
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
   }, []);
   const onSelectHandler = () => {
-    console.log('button radio change');
+    // console.log('button radio change');
   };
-  const question = data[3];
+  const question = data[1];
   return (
     <div className="questions">
       <h2 className="text-light">{question.question}</h2>
