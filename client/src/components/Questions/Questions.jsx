@@ -1,21 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import './Questions.css';
-import data from '../../database/data';
+import { useSelector } from 'react-redux';
+
+/** custom hook */
+import { useFetchQuestions } from '../../hooks/FetchQuestions';
 
 const Questions = () => {
   const [checked, setChecked] = useState(undefined);
+  const [{ isLoading, apiData, serverError }] = useFetchQuestions();
+  const questions = useSelector(
+    (state) => state.questions.queue[state.questions.trace]
+  );
   useEffect(() => {
-    // console.log(data);
-  }, []);
+    // console.log(questions);
+  });
+
+  useEffect(() => {
+    // console.log(isLoading);
+    // console.log(apiData);
+    // console.log(serverError);
+  });
   const onSelectHandler = () => {
     // console.log('button radio change');
   };
-  const question = data[1];
+  if (isLoading) return <h3 className="text-light">{isLoading}</h3>;
+  if (serverError)
+    return <h3 className="text-light">{serverError || 'Unknown Error'}</h3>;
   return (
     <div className="questions">
-      <h2 className="text-light">{question.question}</h2>
-      <ul key={question.id}>
-        {question.options.map((q, index) => (
+      <h2 className="text-light">{questions?.question}</h2>
+      <ul key={questions?.id}>
+        {questions?.options.map((q, index) => (
           <li key={index}>
             <input
               type="radio"
