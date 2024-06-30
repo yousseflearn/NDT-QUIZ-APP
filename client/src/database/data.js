@@ -89,3 +89,5 @@ export default [
     options: ['Expires', 'is suspended', 'Is revoked', 'Is maintained'],
   },
 ];
+
+export const answers = [0, 3, 1, 2, 2, 1, 3, 0, 0, 3];

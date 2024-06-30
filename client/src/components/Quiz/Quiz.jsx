@@ -16,9 +16,6 @@ const Quiz = () => {
   const result = useSelector((state) => state.result.result);
   const { queue, trace } = useSelector((state) => state.questions);
   const dispatch = useDispatch();
-  useEffect(() => {
-    console.log(result);
-  });
 
   // next button event handler
   const onNextHandler = () => {
@@ -32,6 +29,8 @@ const Quiz = () => {
         dispatch(pushAnswer(check));
       }
     }
+    /** reset value of checked variable */
+    setCheck(undefined);
   };
 
   // prev button event handler
@@ -58,9 +57,13 @@ const Quiz = () => {
       {/* questions sample */}
       <Questions onChecked={onChecked} />
       <div className="grid">
-        <button className="btn prev" onClick={onPrevHandler}>
-          Prev
-        </button>
+        {trace > 0 ? (
+          <button className="btn prev" onClick={onPrevHandler}>
+            Prev
+          </button>
+        ) : (
+          <div></div>
+        )}
         <button className="btn next" onClick={onNextHandler}>
           Next
         </button>

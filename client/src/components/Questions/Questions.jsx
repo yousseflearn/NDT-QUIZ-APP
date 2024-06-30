@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Questions.css';
 import { useDispatch, useSelector } from 'react-redux';
-
 /** custom hook */
 import { useFetchQuestions } from '../../hooks/FetchQuestions';
 import { updateResult } from '../../hooks/setResult';
@@ -10,12 +9,12 @@ const Questions = ({ onChecked }) => {
   const [checked, setChecked] = useState(undefined);
   const [{ isLoading, apiData, serverError }] = useFetchQuestions();
   const { trace } = useSelector((state) => state.questions);
+  const result = useSelector((state) => state.result.result);
   const questions = useSelector(
     (state) => state.questions.queue[state.questions.trace]
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log({ trace, checked });
     dispatch(updateResult({ trace, checked }));
   }, [checked]);
 
@@ -25,9 +24,9 @@ const Questions = ({ onChecked }) => {
     // console.log(serverError);
   });
   const onSelectHandler = (index) => {
-    console.log(index);
     onChecked(index);
     setChecked(index);
+    dispatch(updateResult({ trace, checked }));
   };
 
   const indicator = ['A', 'B', 'C', 'D'];
@@ -54,7 +53,9 @@ const Questions = ({ onChecked }) => {
               <span className="question-letter">{`${indicator[index]}- `}</span>
               {q}
             </label>
-            <div className="check"></div>
+            <div
+              className={`check ${result[trace] == index ? 'checked' : ''}`}
+            ></div>
           </li>
         ))}
       </ul>
