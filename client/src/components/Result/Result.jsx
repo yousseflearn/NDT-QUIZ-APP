@@ -2,9 +2,15 @@ import React from 'react';
 import './Result.css';
 import { Link } from 'react-router-dom';
 import ResultTable from '../ResultTable/ResultTable';
+
+import { resetAllAction } from '../../redux/questionReducer';
+import { resetResultAction } from '../../redux/resultReducer';
+import { useDispatch } from 'react-redux';
 const Result = () => {
+  const dispatch = useDispatch();
   const onClickHandler = () => {
-    console.log('restart');
+    dispatch(resetResultAction());
+    dispatch(resetAllAction());
   };
   return (
     <>

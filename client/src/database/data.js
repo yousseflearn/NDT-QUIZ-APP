@@ -28,7 +28,7 @@ export default [
     options: [
       'Demonstrated the skill and knowledge and documented training and experience to properly perform a specific job',
       'Passed the general, specific, and practical examination in a method with minimum scores of 80% in each examination',
-      'Complete the classroom training for the basic examination, the specific examination for the employer’s product line, the applicable method examination',
+      'Complete the classroom training for the basic examination, the specific examination for the employer’s product line, the method examination',
       'Complete all training and examination for classification to job title',
     ],
   },
