@@ -13,6 +13,7 @@ const Questions = ({ onChecked }) => {
   const questions = useSelector(
     (state) => state.questions.queue[state.questions.trace]
   );
+  useSelector((state) => console.log(state));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateResult({ trace, checked }));

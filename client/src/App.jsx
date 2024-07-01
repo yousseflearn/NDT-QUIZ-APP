@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Quiz from './components/Quiz/Quiz';
 import Result from './components/Result/Result';
+import CheckUserExist from './helper/CheckUserExist';
 
 const App = () => {
   return (
@@ -10,8 +11,22 @@ const App = () => {
       <div className="app">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/result" element={<Result />} />
+          <Route
+            path="/quiz"
+            element={
+              <CheckUserExist>
+                <Quiz />
+              </CheckUserExist>
+            }
+          />
+          <Route
+            path="/result"
+            element={
+              <CheckUserExist>
+                <Result />
+              </CheckUserExist>
+            }
+          />
         </Routes>
       </div>
     </>
