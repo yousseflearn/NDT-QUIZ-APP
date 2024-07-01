@@ -4,6 +4,10 @@ import cors from 'cors';
 import { config } from 'dotenv';
 import router from './router/route.js';
 
+/** import connection  */
+import connect from './database/connect.js';
+import { error } from 'console';
+
 const app = express();
 
 /** app middleware */
@@ -27,6 +31,17 @@ app.get('/', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`server is running on http:localhost:${port}`);
-});
+/** start server only if we have a valid connection */
+connect()
+  .then(() => {
+    try {
+      app.listen(port, () => {
+        console.log(`server is running on http:localhost:${port}`);
+      });
+    } catch (error) {
+      console.log('we cannot connected to the server');
+    }
+  })
+  .catch((error) => {
+    console.log('Invalid Database Connection');
+  });
