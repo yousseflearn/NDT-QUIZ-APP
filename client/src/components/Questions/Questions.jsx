@@ -13,17 +13,11 @@ const Questions = ({ onChecked }) => {
   const questions = useSelector(
     (state) => state.questions.queue[state.questions.trace]
   );
-  useSelector((state) => console.log(state));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateResult({ trace, checked }));
   }, [checked]);
 
-  useEffect(() => {
-    // console.log(isLoading);
-    // console.log(apiData);
-    // console.log(serverError);
-  });
   const onSelectHandler = (index) => {
     onChecked(index);
     setChecked(index);

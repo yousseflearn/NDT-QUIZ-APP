@@ -19,7 +19,6 @@ const Quiz = () => {
 
   // next button event handler
   const onNextHandler = () => {
-    console.log('onclick next ');
     if (trace < queue.length) {
       /** update trace value by one using moveNextQuestion */
       dispatch(moveNextQuestion());
@@ -35,7 +34,6 @@ const Quiz = () => {
 
   // prev button event handler
   const onPrevHandler = () => {
-    console.log('onClick prev');
     if (trace > 0) {
       /** update trace value by one using movePrevQuestion */
       dispatch(movePrevQuestion());
@@ -43,7 +41,6 @@ const Quiz = () => {
   };
 
   const onChecked = (check) => {
-    console.log(check);
     setCheck(check);
   };
 
